@@ -1,11 +1,11 @@
-.grid {
+.ds-page-hero-grid {
   display: grid;
   gap: 64px;
   align-items: start;
 }
 
 @media (max-width: 760px) {
-  .grid {
+  .ds-page-hero-grid {
     grid-template-columns: 1fr !important;
     gap: 40px;
   }

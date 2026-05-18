@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Button.module.css';
+import './Button.module.css';
 
 export type ButtonVariant = 'primary' | 'mustard' | 'terra' | 'outline' | 'ghost';
 
@@ -25,6 +25,14 @@ function splitArrow(children: React.ReactNode): [React.ReactNode, boolean] {
   return [children, false];
 }
 
+const variantClassName: Record<ButtonVariant, string> = {
+  primary: 'ds-btn-primary',
+  mustard: 'ds-btn-mustard',
+  terra: 'ds-btn-terra',
+  outline: 'ds-btn-outline',
+  ghost: 'ds-btn-ghost',
+};
+
 export default function Button({
   href,
   onClick,
@@ -38,14 +46,14 @@ export default function Button({
   className,
   LinkComponent = 'a',
 }: ButtonProps) {
-  const variantClass = onDark && variant === 'outline' ? s.outlineDark : s[variant];
-  const cls = [s.btn, variantClass, className].filter(Boolean).join(' ');
+  const variantClass = onDark && variant === 'outline' ? 'ds-btn-outline-dark' : variantClassName[variant];
+  const cls = ['ds-btn', variantClass, className].filter(Boolean).join(' ');
   const [text, hasArrow] = splitArrow(children);
 
   const inner = (
     <>
       {text}
-      {hasArrow && <span className={s.arrow} aria-hidden>→</span>}
+      {hasArrow && <span className="ds-btn-arrow" aria-hidden>→</span>}
     </>
   );
 

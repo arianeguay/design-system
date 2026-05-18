@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Tag.module.css';
+import './Tag.module.css';
 
 interface TagProps {
   children: React.ReactNode;
@@ -8,6 +8,8 @@ interface TagProps {
 }
 
 export default function Tag({ children, accent = false, onDark = false }: TagProps) {
-  const cls = [s.tag, accent && s.accent, onDark && s.onDark].filter(Boolean).join(' ');
+  const cls = ['ds-tag', accent && 'ds-tag-accent', onDark && 'ds-tag-on-dark']
+    .filter(Boolean)
+    .join(' ');
   return <span className={cls}>{children}</span>;
 }

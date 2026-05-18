@@ -1,4 +1,4 @@
-.btn {
+.ds-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -20,71 +20,71 @@
   will-change: transform;
 }
 
-.btn:hover {
+.ds-btn:hover {
   transform: translateY(-2px);
 }
 
-.btn:active {
+.ds-btn:active {
   transform: translateY(0);
   transition-duration: 80ms;
 }
 
-.btn:disabled {
+.ds-btn:disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
-.primary {
+.ds-btn-primary {
   background: var(--color-ink);
   color: var(--color-paper);
 }
 
-.primary:hover {
+.ds-btn-primary:hover {
   box-shadow: 0 8px 24px -4px rgba(42, 32, 24, 0.35);
 }
 
-.mustard {
+.ds-btn-mustard {
   background: var(--color-mustard);
   color: var(--color-ink);
   box-shadow: 0 8px 20px -8px rgba(219, 166, 54, 0.5);
 }
 
-.mustard:hover {
+.ds-btn-mustard:hover {
   box-shadow: 0 12px 28px -6px rgba(219, 166, 54, 0.65);
 }
 
-.terra {
+.ds-btn-terra {
   background: var(--color-terra);
   color: var(--color-paper);
 }
 
-.terra:hover {
+.ds-btn-terra:hover {
   box-shadow: 0 8px 24px -4px rgba(201, 100, 66, 0.4);
 }
 
-.outline {
+.ds-btn-outline {
   background: transparent;
   color: var(--color-ink);
   border: 1px solid var(--color-ink-line);
 }
 
-.outline:hover {
+.ds-btn-outline:hover {
   border-color: var(--color-ink);
   box-shadow: 0 4px 12px -2px rgba(42, 32, 24, 0.12);
 }
 
-.outlineDark {
+.ds-btn-outline-dark {
   background: transparent;
   color: var(--color-dark-fg);
   border: 1px solid rgba(234, 217, 212, 0.3);
 }
 
-.outlineDark:hover {
+.ds-btn-outline-dark:hover {
   border-color: var(--color-dark-fg);
   box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
 }
 
-.ghost {
+.ds-btn-ghost {
   background: transparent;
   color: var(--color-ink-soft);
   border: none;
@@ -97,21 +97,21 @@
   padding: 0;
 }
 
-.ghost:hover {
+.ds-btn-ghost:hover {
   color: var(--color-terra);
   text-decoration-style: solid;
   transform: none;
 }
 
-.arrow {
+.ds-btn-arrow {
   display: inline-block;
   transition: transform 220ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-.btn:hover .arrow {
+.ds-btn:hover .ds-btn-arrow {
   transform: translateX(4px);
 }
 
-.ghost:hover .arrow {
+.ds-btn-ghost:hover .ds-btn-arrow {
   transform: translateX(4px);
 }

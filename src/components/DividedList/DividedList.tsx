@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './DividedList.module.css';
+import './DividedList.module.css';
 
 /* Liste avec border-top pleine + border-bottom légère sur chaque item.
    Pattern récurrent : Services (home), Thèse + Patterns (studio),
@@ -39,7 +39,7 @@ interface DividedRowProps {
 export function DividedRow({ children, columns, gap = 40, py = 32 }: DividedRowProps) {
   return (
     <div
-      className={s.row}
+      className="ds-divided-row"
       style={{
         display: 'grid',
         gridTemplateColumns: columns,
