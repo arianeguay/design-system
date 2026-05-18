@@ -9,9 +9,10 @@ interface WarmSectionProps {
   children: React.ReactNode;
   style?: React.CSSProperties;
   texture?: TextureName;
+  renderTexture?: React.ReactNode;
 }
 
-export default function WarmSection({ bg = 'paperWarm', py, children, style, texture }: WarmSectionProps) {
+export default function WarmSection({ bg = 'paperWarm', py, children, style, texture, renderTexture }: WarmSectionProps) {
   return (
     <section
       className={`${s.section} ${s[bg]}`}
@@ -25,6 +26,7 @@ export default function WarmSection({ bg = 'paperWarm', py, children, style, tex
           className={s.texture}
         />
       )}
+      {renderTexture}
       <div className={s.inner}>
         {children}
       </div>

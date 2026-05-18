@@ -11,6 +11,7 @@ interface PageHeroProps {
   /** Padding vertical haut / bas */
   py?: [number, number];
   titleProps?: React.HTMLAttributes<HTMLHeadingElement>;
+  renderTexture?: React.ReactNode;
 }
 
 export default function PageHero({
@@ -22,9 +23,11 @@ export default function PageHero({
   columns = '1.3fr 1fr',
   py = [80, 90],
   titleProps,
+  renderTexture,
 }: PageHeroProps) {
   return (
     <header style={{ position: 'relative', overflow: 'hidden' }}>
+      {renderTexture}
       <div
         className={`container ${s.grid}`}
         style={{
