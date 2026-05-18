@@ -114,6 +114,16 @@
   color: var(--color-ink);
 }
 
+/* Wordmark Studio — studio: (Ubuntu Bold, deux-points terra)
+   Sur fond dark : --color-dark-fg. Sur fond clair : --color-ink.
+   Le colon terra est rendu via un <span> inline dans le composant <Wordmark />. */
+.t-wordmark-studio {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
 /* Lien subtil sur fond clair — texte mono discret, hover vers ink */
 .t-link-subtle {
   text-decoration: none;
