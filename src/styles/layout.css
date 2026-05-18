@@ -1,0 +1,82 @@
+/* Utilitaires de layout — structure de page et espacements récurrents.
+   Couvrent les patterns répétés dans WarmSection, PageHero, et toutes les sections. */
+
+/* Conteneur centré pleine largeur — utilisé dans chaque section */
+.container {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-px);
+}
+
+/* Section pleine largeur avec padding vertical standard */
+.section {
+  position: relative;
+  overflow: clip;
+  padding: 110px 0;
+}
+
+.section-sm {
+  position: relative;
+  overflow: clip;
+  padding: 72px 0;
+}
+
+.section-lg {
+  position: relative;
+  overflow: clip;
+  padding: 160px 0;
+}
+
+/* Fonds de section */
+.bg-cream      { background: var(--color-cream); }
+.bg-paper      { background: var(--color-paper); }
+.bg-paper-warm { background: var(--color-paper-warm); }
+.bg-dark       { background: var(--color-dark); color: var(--color-dark-fg); }
+
+/* Flexbox courants */
+.flex-row   { display: flex; align-items: center; }
+.flex-col   { display: flex; flex-direction: column; }
+.flex-wrap  { flex-wrap: wrap; }
+
+/* Grilles de page */
+.page-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Grille 2 colonnes égales — empile sur mobile */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .section    { padding: 64px 0; }
+  .section-sm { padding: 40px 0; }
+  .section-lg { padding: 80px 0; }
+}
+
+/* Séparateur horizontal */
+.rule {
+  border: none;
+  border-top: 1px solid var(--color-ink-rule);
+}
+
+/* Espacement vertical entre blocs de contenu */
+.stack-sm > * + * { margin-top: 12px; }
+.stack    > * + * { margin-top: 24px; }
+.stack-lg > * + * { margin-top: 48px; }

@@ -1,0 +1,148 @@
+/* Utilitaires typographiques — tirés directement des tokens.
+   Utilisés via className dans les composants system/.
+   Pour les styles vraiment spécifiques à un contexte, utiliser un CSS module. */
+
+.t-wordmark {
+  font-family: var(--font-wordmark);
+}
+
+.t-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  color: var(--color-ink);
+}
+
+.t-h1 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-display);
+  line-height: 0.96;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+}
+
+.t-h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  line-height: 1.0;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+}
+
+.t-h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+}
+
+/* Texte introductif sous un titre */
+.t-lead {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+
+.t-lead-sm {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+
+/* Label mono en capslock — eyebrow, section tag, locale switcher */
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-terra);
+  margin-bottom: 16px;
+}
+
+/* Label mono muted — timestamps, metadata, nav lang toggle */
+.t-mono-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+}
+
+/* Corps de texte standard */
+.t-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-ink);
+}
+
+/* Trois niveaux d'accent terracotta — règle stricte :
+   t-accent       → <span> dans un h1 hero  (couleur seulement, police heading normale)
+   t-accent-serif → <em> dans un h2 section  (Fraunces italique)
+   inline terra   → éléments UI uniquement  (icônes, points, bordures, YAML) */
+
+/* Accent couleur — mot mis en valeur dans un h1 hero */
+.t-accent {
+  color: var(--color-terra);
+}
+
+/* Accent calligraphique — mot en Fraunces italique dans un h2 de section.
+   Contextes exclusifs : .t-wordmark = logo, .t-accent-serif = section h2. */
+.t-accent-serif {
+  font-family: var(--font-wordmark);
+  font-style: italic;
+  color: var(--color-terra);
+}
+
+.t-accent-mustard {
+  color: var(--color-mustard);
+}
+
+/* Citation — bloc blockquote ou pull-quote en heading italic */
+.t-quote {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+/* Lien subtil sur fond clair — texte mono discret, hover vers ink */
+.t-link-subtle {
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.t-link-subtle:hover {
+  color: var(--color-ink);
+}
+
+/* Lien ghost sur fond sombre — semi-transparent, hover vers blanc crème */
+.t-link-glass {
+  text-decoration: none;
+  transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
+}
+
+.t-link-glass:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Lien texte discret sur fond sombre — mono label, hover vers blanc crème */
+.t-link-dark-subtle {
+  text-decoration: none;
+  transition: color 200ms ease, opacity 200ms ease;
+}
+
+.t-link-dark-subtle:hover {
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1 !important;
+}
