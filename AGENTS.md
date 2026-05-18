@@ -45,31 +45,20 @@ pnpm typecheck    # tsc --noEmit
 
 `tsup.config.ts` émet ESM + CJS depuis `src/index.ts`. Le barrel reçoit automatiquement le banner `"use client"` via `banner: { js: '"use client"' }` — nécessaire parce que `SectionHeader` → `FadeIn` (hooks) transitif.
 
-Les CSS de composants (`*.module.css`) ne sont **pas** copiés dans dist — tsup/esbuild les compile en objets vides. Pour que les styles fonctionnent en production (webpack), les consumers doivent aliaser webpack vers le source TypeScript du package. C'est pourquoi `src/` est inclus dans `files` et dans le package publié.
+Les CSS de composants (`*.module.css`) sont bundlés en CSS global dans `dist/index.css`. tsup ne gère pas les CSS modules — son plugin postcss interne intercepte tout `.css` et le traite comme global, peu importe le namespace. On utilise donc des classes globales préfixées `ds-*` référencées par chaîne dans les composants (pas d'`import s from`). `scripts/build-css.mjs` ajoute `@import '../index.css'` dans `dist/styles/index.css` pour que le bundle CSS soit livré avec les tokens via un seul import.
 
 ---
 
 ## Consommer le package
 
-### Dans un consumer Next.js
-
-```ts
-// next.config.ts
-const nextConfig = {
-  transpilePackages: ['@arianeguay/design-system'],
-};
-```
-
-Pourquoi : tsup ne gère pas les CSS modules — les imports `.module.css` sont compilés en objets vides dans le dist. `transpilePackages` demande à Turbopack de recompiler le source du package, ce qui gère les CSS modules nativement.
-
-> **Dev local avec les deux repos côte à côte** — Si `design-system/` et le consumer sont des repos siblings dans un même dossier parent, tu peux ajouter `resolveAlias` dans `turbopack` pour pointer vers le source local et voir tes changements sans republier. C'est une commodité locale, pas une configuration de production.
-
-### Import des styles globaux
+### Import des styles
 
 ```ts
 // app/layout.tsx
 import '@arianeguay/design-system/styles';
 ```
+
+Cet import couvre tout : tokens, utilitaires typographiques (`t-*`), utilitaires layout (`.container`, `.section`, etc.) **et** styles des composants (`ds-*`). Aucune configuration Next/Turbopack supplémentaire requise.
 
 ### Import des composants
 
@@ -87,11 +76,13 @@ import { Button, Tag, WarmSection, PageHero, SectionHeader, RichText, YamlPrevie
 4. Exporter depuis `src/index.ts`
 5. `pnpm build` pour vérifier
 
-### Règles CSS modules
+### Règles CSS composants
 
-- Styles locaux → `NomComposant.module.css` dans le même dossier
+- Styles locaux → `NomComposant.module.css` dans le même dossier (bundlés en CSS global)
+- Toutes les classes locales doivent être préfixées `ds-` (ex: `ds-btn`, `ds-warm-section`) pour éviter les collisions chez les consumers
+- Dans le `.tsx`: faire `import './NomComposant.module.css'` (side-effect) — pas `import s from`. Référencer les classes par chaîne littérale (`className="ds-btn"`)
 - Aucune couleur hex hors de `src/styles/tokens.css`
-- Ne pas dupliquer les utilitaires de `typography.css` / `layout.css` dans un module — utiliser les classes globales directement
+- Ne pas dupliquer les utilitaires de `typography.css` / `layout.css` — utiliser les classes globales directement
 
 ---
 

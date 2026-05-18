@@ -1,4 +1,4 @@
-.tag {
+.ds-tag {
   font-family: var(--font-mono);
   font-size: 11.5px;
   padding: 5px 10px;
@@ -9,13 +9,13 @@
   color: var(--color-ink-soft);
 }
 
-.tag.accent {
+.ds-tag.ds-tag-accent {
   border-color: var(--color-terra);
   background: var(--color-terra-soft);
   color: var(--color-terra-deep);
 }
 
-.tag.onDark {
+.ds-tag.ds-tag-on-dark {
   border-color: rgba(255, 231, 201, 0.25);
   color: rgba(255, 231, 201, 0.75);
 }

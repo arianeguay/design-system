@@ -1,4 +1,4 @@
-import s from './PageHero.module.css';
+import './PageHero.module.css';
 
 interface PageHeroProps {
   eyebrow: string;
@@ -29,7 +29,7 @@ export default function PageHero({
     <header style={{ position: 'relative', overflow: 'hidden' }}>
       {renderTexture}
       <div
-        className={`container ${s.grid}`}
+        className="container ds-page-hero-grid"
         style={{
           padding: `${py[0]}px var(--page-px) ${py[1]}px`,
           gridTemplateColumns: right ? columns : '1fr',

@@ -1,10 +1,10 @@
-.section {
+.ds-warm-section {
   position: relative;
   overflow: clip;
   padding: var(--section-py, 96px) 0;
 }
 
-.texture {
+.ds-warm-section-texture {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -14,29 +14,29 @@
   user-select: none;
 }
 
-.inner {
+.ds-warm-section-inner {
   position: relative;
   max-width: var(--page-max);
   margin: 0 auto;
   padding: 0 var(--page-px);
 }
 
-.paper     { background: var(--color-paper);      color: var(--color-ink); }
-.paperWarm { background: var(--color-paper-warm); color: var(--color-ink); }
-.cream     { background: var(--color-cream);      color: var(--color-ink); }
-.dark      { background: var(--color-dark);       color: var(--color-dark-fg); }
+.ds-warm-section-bg-paper      { background: var(--color-paper);      color: var(--color-ink); }
+.ds-warm-section-bg-paper-warm { background: var(--color-paper-warm); color: var(--color-ink); }
+.ds-warm-section-bg-cream      { background: var(--color-cream);      color: var(--color-ink); }
+.ds-warm-section-bg-dark       { background: var(--color-dark);       color: var(--color-dark-fg); }
 
 /* Textures sur fonds clairs : traits noirs → inversés en blanc sur fond sombre */
 @media (prefers-color-scheme: dark) {
-  .paper .texture,
-  .paperWarm .texture,
-  .cream .texture {
+  .ds-warm-section-bg-paper .ds-warm-section-texture,
+  .ds-warm-section-bg-paper-warm .ds-warm-section-texture,
+  .ds-warm-section-bg-cream .ds-warm-section-texture {
     filter: invert(1);
   }
 }
 
 @media (max-width: 760px) {
-  .section {
+  .ds-warm-section {
     padding: calc(var(--section-py, 96px) * 0.6) 0;
   }
 }
