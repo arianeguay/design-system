@@ -32,7 +32,10 @@ export default function FadeIn({
     const el = ref.current;
     if (!el) return;
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (
+      process.env.NEXT_PUBLIC_DISABLE_ANIMATIONS === '1' ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
       setVisible(true);
       return;
     }
