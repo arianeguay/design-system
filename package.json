@@ -13,7 +13,17 @@
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/styles/index.css"
+    "./styles": "./dist/styles/index.css",
+    "./components/FadeIn": {
+      "import": "./dist/components/FadeIn.js",
+      "require": "./dist/components/FadeIn.cjs",
+      "types": "./dist/components/FadeIn.d.ts"
+    },
+    "./components/CodeBlock": {
+      "import": "./dist/components/CodeBlock.js",
+      "require": "./dist/components/CodeBlock.cjs",
+      "types": "./dist/components/CodeBlock.d.ts"
+    }
   },
   "files": [
     "dist"

@@ -7,6 +7,10 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom'],
+  // Preserve "use client" from src/index.ts in the bundle output
+  banner: {
+    js: '"use client";',
+  },
   esbuildOptions(options) {
     options.jsx = 'automatic';
   },
