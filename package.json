@@ -1,6 +1,6 @@
 {
   "name": "@arianeguay/design-system",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Shared design system — portfolio, Studio Foundation Web, Little Chef",
   "license": "MIT",
   "type": "module",
@@ -36,6 +36,7 @@
     "react-dom": ">=19"
   },
   "devDependencies": {
+    "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tsup": "^8",

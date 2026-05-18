@@ -11,6 +11,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "types": ["node"],
     "skipLibCheck": true,
     "esModuleInterop": true
   },
