@@ -1,6 +1,6 @@
 {
   "name": "@arianeguay/design-system",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Shared design system — portfolio, Studio Foundation Web, Little Chef",
   "license": "MIT",
   "type": "module",
@@ -20,7 +20,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",

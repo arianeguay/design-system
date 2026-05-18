@@ -45,27 +45,24 @@ pnpm typecheck    # tsc --noEmit
 
 `tsup.config.ts` émet ESM + CJS depuis `src/index.ts`. Le barrel reçoit automatiquement le banner `"use client"` via `banner: { js: '"use client"' }` — nécessaire parce que `SectionHeader` → `FadeIn` (hooks) transitif.
 
-Les CSS de composants (`*.module.css`) ne sont **pas** copiés dans dist. Les consumers en workspace Next.js doivent utiliser `transpilePackages + resolveAlias` pour lire le source directement (voir ci-dessous).
+Les CSS de composants (`*.module.css`) ne sont **pas** copiés dans dist — tsup/esbuild les compile en objets vides. Pour que les styles fonctionnent en production (webpack), les consumers doivent aliaser webpack vers le source TypeScript du package. C'est pourquoi `src/` est inclus dans `files` et dans le package publié.
 
 ---
 
 ## Consommer le package
 
-### Dans un consumer Next.js du workspace (recommandé en dev)
+### Dans un consumer Next.js
 
 ```ts
 // next.config.ts
 const nextConfig = {
   transpilePackages: ['@arianeguay/design-system'],
-  turbopack: {
-    resolveAlias: {
-      '@arianeguay/design-system': '../design-system/src/index.ts',
-    },
-  },
 };
 ```
 
-Pourquoi : tsup ne gère pas les CSS modules — les imports `.module.css` sont compilés en objets vides dans le dist. `resolveAlias` redirige Turbopack vers le source TypeScript, qui gère les CSS modules nativement.
+Pourquoi : tsup ne gère pas les CSS modules — les imports `.module.css` sont compilés en objets vides dans le dist. `transpilePackages` demande à Turbopack de recompiler le source du package, ce qui gère les CSS modules nativement.
+
+> **Dev local avec les deux repos côte à côte** — Si `design-system/` et le consumer sont des repos siblings dans un même dossier parent, tu peux ajouter `resolveAlias` dans `turbopack` pour pointer vers le source local et voir tes changements sans republier. C'est une commodité locale, pas une configuration de production.
 
 ### Import des styles globaux
 
