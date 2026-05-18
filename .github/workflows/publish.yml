@@ -24,7 +24,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@arianeguay'
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
 
       - run: pnpm build
 
