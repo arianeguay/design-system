@@ -13,3 +13,4 @@ export { default as DividedList } from './components/DividedList';
 export { default as DashLines } from './components/DashLines';
 export { default as FadeIn } from './components/FadeIn';
 export { default as CodeBlock } from './components/CodeBlock';
+export { default as StudioWordmark, type StudioWordmarkProps } from './components/StudioWordmark';
