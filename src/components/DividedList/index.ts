@@ -1,1 +1,1 @@
-export { default } from './DividedList';
+export { default, DividedRow } from './DividedList';
