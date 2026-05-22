@@ -77,6 +77,37 @@
   }
 }
 
+/* Force light tokens regardless of OS preference — used by light-only apps.
+   Apply data-theme="light" on the page wrapper to activate. */
+[data-theme="light"] {
+  --color-cream: #f5efe4;
+  --color-cream-deep: #ede3d2;
+  --color-paper: #faf6ed;
+  --color-paper-warm: #f1e8d8;
+
+  --color-ink: #2a2018;
+  --color-ink-soft: #4a3d31;
+  --color-ink-mute: rgba(42, 32, 24, 0.6);
+  --color-ink-faint: rgba(42, 32, 24, 0.4);
+  --color-ink-rule: rgba(42, 32, 24, 0.13);
+  --color-ink-line: rgba(42, 32, 24, 0.22);
+
+  --color-terra: #c96442;
+  --color-terra-deep: #9b4528;
+  --color-terra-soft: rgba(201, 100, 66, 0.12);
+
+  --color-mustard: #dba636;
+  --color-bourgogne: #7a1f3d;
+
+  --color-dark: #2a2018;
+  --color-dark-elev: #3a2e23;
+  --color-dark-fg: #ead9d4;
+  --color-dark-fg-dim: rgba(234, 217, 212, 0.55);
+  --color-dark-rule: rgba(234, 217, 212, 0.1);
+
+  color-scheme: light;
+}
+
 /* Force dark tokens regardless of OS preference — used by dark-only apps (e.g. studio-foundation-web).
    Apply data-theme="dark" on the page wrapper to activate. */
 [data-theme="dark"] {
