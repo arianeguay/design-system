@@ -14,3 +14,20 @@ export { default as DashLines } from './components/DashLines';
 export { default as FadeIn } from './components/FadeIn';
 export { default as CodeBlock } from './components/CodeBlock';
 export { default as StudioWordmark, type StudioWordmarkProps } from './components/StudioWordmark';
+
+export {
+  default as Drawer,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerBody,
+  DrawerFooter,
+  DrawerClose,
+} from './components/Drawer';
+export type {
+  DrawerProps,
+  DrawerSide,
+  DrawerSize,
+  DrawerBackdrop,
+  DrawerTitleProps,
+  DrawerCloseProps,
+} from './components/Drawer';
