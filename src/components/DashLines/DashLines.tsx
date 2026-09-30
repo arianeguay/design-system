@@ -8,7 +8,7 @@ interface ADashLinesProps {
 
 export default function ADashLines({
   variant = 'grid',
-  stroke = '#FFE7C9',
+  stroke = 'var(--band-fg)',
   opacity = 0.4,
   style = {},
 }: ADashLinesProps) {
