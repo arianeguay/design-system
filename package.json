@@ -9,16 +9,16 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "source": "./src/index.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     },
     "./studio": {
+      "types": "./dist/studio.d.ts",
       "source": "./src/studio.ts",
       "import": "./dist/studio.js",
-      "require": "./dist/studio.cjs",
-      "types": "./dist/studio.d.ts"
+      "require": "./dist/studio.cjs"
     },
     "./styles": {
       "source": "./src/styles/index.css",
