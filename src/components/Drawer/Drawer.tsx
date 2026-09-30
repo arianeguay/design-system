@@ -118,7 +118,7 @@ export default function Drawer({
     return () => clearTimeout(timer);
   }, [open, shouldRender]);
 
-  // Scroll lock + focus management — tied to `open` so it triggers immediately,
+  // Scroll lock and focus management, tied to `open` so it triggers immediately,
   // even before the exit animation finishes.
   useEffect(() => {
     if (!open) return;
