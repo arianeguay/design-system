@@ -1,10 +1,15 @@
+.ds-divided-list-ink  { border-top: 1px solid var(--ink); }
+.ds-divided-list-rule { border-top: 1px solid var(--rule); }
+
 .ds-divided-row {
-  border-bottom: 1px solid var(--color-ink-rule);
+  display: grid;
+  align-items: start;
+  border-bottom: 1px solid var(--rule);
 }
 
 @media (max-width: 760px) {
   .ds-divided-row {
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     gap: 16px !important;
   }

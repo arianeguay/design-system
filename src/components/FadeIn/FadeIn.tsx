@@ -12,10 +12,6 @@ interface FadeInProps {
   threshold?: number;
 }
 
-// Délai minimal avant de lancer l'observer — évite le flash opacity:0→1
-// qui se produit quand l'hydration et l'observer se déclenchent en même temps.
-const BOOT_DELAY = 300;
-
 export default function FadeIn({
   children,
   delay = 0,
@@ -26,34 +22,32 @@ export default function FadeIn({
   threshold = 0.1,
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
+  // Visible by default: only content still below the fold is hidden, then revealed on scroll.
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-
     if (
+      !el ||
       process.env.NEXT_PUBLIC_DISABLE_ANIMATIONS === '1' ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      el.getBoundingClientRect().top < window.innerHeight
     ) {
-      setVisible(true);
       return;
     }
 
-    const boot = setTimeout(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-          }
-        },
-        { threshold }
-      );
-      observer.observe(el);
-    }, BOOT_DELAY);
-
-    return () => clearTimeout(boot);
+    setHidden(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHidden(false);
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [threshold]);
 
   const Component = Tag as React.ElementType;
@@ -63,9 +57,9 @@ export default function FadeIn({
       ref={ref}
       className={className}
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : `translateY(${y}px)`,
-        transition: `opacity 700ms cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 700ms cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+        opacity: hidden ? 0 : 1,
+        transform: hidden ? `translateY(${y}px)` : 'none',
+        transition: `opacity var(--dur-enter) var(--ease-enter) ${delay}ms, transform var(--dur-enter) var(--ease-enter) ${delay}ms`,
         ...style,
       }}
     >

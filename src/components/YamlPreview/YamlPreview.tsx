@@ -1,5 +1,7 @@
-/* Fenêtre de code YAML syntaxiquement colorée.
+/* Fenêtre de code YAML syntaxiquement colorée, sur la bande sombre.
    Utilisée dans HomeHero, StudioHero, et les patterns Studio. */
+
+import CodeBlock from '../CodeBlock';
 
 interface YamlPreviewProps {
   filename: string;
@@ -7,83 +9,18 @@ interface YamlPreviewProps {
 }
 
 export default function YamlPreview({ filename, children }: YamlPreviewProps) {
-  return (
-    <div style={{ background: 'var(--color-cream)', borderRadius: 8, overflow: 'hidden', boxShadow: '0 2px 40px rgba(0,0,0,0.3)' }}>
-      <div style={{
-        padding: '11px 18px',
-        borderBottom: '1px solid rgba(42,32,24,0.12)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        fontFamily: 'var(--font-mono)',
-        fontSize: 11,
-        color: 'var(--color-ink-mute)',
-        letterSpacing: '0.05em',
-      }}>
-        <span>{filename}</span>
-        <span style={{ textTransform: 'uppercase', fontSize: 10 }}>YAML</span>
-      </div>
-      <pre style={{
-        margin: 0,
-        padding: '20px 22px',
-        fontFamily: 'var(--font-mono)',
-        fontSize: 12.5,
-        lineHeight: 1.75,
-        color: 'var(--color-ink)',
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word',
-        overflowX: 'auto',
-      }}>
-        {children}
-      </pre>
-    </div>
-  );
+  return <CodeBlock filename={filename} lang="yaml">{children}</CodeBlock>;
 }
 
-/* Variante sombre — utilisée dans les patterns Studio */
+/* Same window as YamlPreview, kept for existing callers. */
 export function YamlPreviewDark({ filename, children }: YamlPreviewProps) {
-  return (
-    <div style={{ background: 'var(--color-dark)', borderRadius: 8, overflow: 'hidden' }}>
-      <div style={{
-        padding: '11px 18px',
-        borderBottom: '1px solid rgba(255,255,255,0.07)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        fontFamily: 'var(--font-mono)',
-        fontSize: 11,
-        color: 'rgba(255,255,255,0.35)',
-        letterSpacing: '0.05em',
-      }}>
-        <span>{filename}</span>
-        <span style={{ textTransform: 'uppercase', fontSize: 10 }}>YAML</span>
-      </div>
-      <pre style={{
-        margin: 0,
-        padding: '20px 22px',
-        fontFamily: 'var(--font-mono)',
-        fontSize: 12.5,
-        lineHeight: 1.75,
-        color: 'rgba(255,255,255,0.75)',
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word',
-        overflowX: 'auto',
-      }}>
-        {children}
-      </pre>
-    </div>
-  );
+  return <CodeBlock filename={filename} lang="yaml">{children}</CodeBlock>;
 }
 
-/* Helpers de colorisation YAML — à utiliser dans le contenu des previews */
-export const Y = {
-  key: (s: string) => <span style={{ color: 'var(--color-terra)' }}>{s}</span>,
-  val: (s: string) => <span style={{ color: 'var(--color-bourgogne)' }}>{s}</span>,
-  mute: (s: string) => <span style={{ color: 'var(--color-ink-mute)' }}>{s}</span>,
-  comment: (s: string) => <span style={{ color: 'var(--color-ink-mute)', fontStyle: 'italic' }}>{s}</span>,
-  // Pour les previews sombres
-  dkey: (s: string) => <span style={{ color: 'var(--color-terra)' }}>{s}</span>,
-  dmute: (s: string) => <span style={{ color: 'rgba(255,255,255,0.4)' }}>{s}</span>,
-  dval: (s: string) => <span style={{ color: 'rgba(201,100,66,0.75)' }}>{s}</span>,
-  dcomment: (s: string) => <span style={{ color: 'rgba(255,255,255,0.28)', fontStyle: 'italic' }}>{s}</span>,
-};
+/* Helpers de colorisation YAML. The d* names are aliases kept for existing callers. */
+const key = (t: string) => <span className="ds-code-key">{t}</span>;
+const val = (t: string) => <span className="ds-code-val">{t}</span>;
+const mute = (t: string) => <span className="ds-code-mute">{t}</span>;
+const comment = (t: string) => <span className="ds-code-comment">{t}</span>;
+
+export const Y = { key, val, mute, comment, dkey: key, dval: val, dmute: mute, dcomment: comment };

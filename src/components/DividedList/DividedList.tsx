@@ -14,20 +14,13 @@ interface DividedListProps {
 
 export default function DividedList({ children, topBorder = 'ink', style }: DividedListProps) {
   return (
-    <div
-      style={{
-        borderTop: `1px solid ${
-          topBorder === 'ink' ? 'var(--color-ink)' : 'var(--color-ink-rule)'
-        }`,
-        ...style,
-      }}
-    >
+    <div className={`ds-divided-list-${topBorder}`} style={style}>
       {children}
     </div>
   );
 }
 
-/* Chaque ligne dans la liste — le grid columns est défini par le parent
+/* Chaque ligne dans la liste : le grid columns est défini par le parent
    car il varie trop d'une page à l'autre pour être standardisé. */
 interface DividedRowProps {
   children: React.ReactNode;
@@ -40,13 +33,7 @@ export function DividedRow({ children, columns, gap = 40, py = 32 }: DividedRowP
   return (
     <div
       className="ds-divided-row"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: columns,
-        gap,
-        padding: `${py}px 0`,
-        alignItems: 'start',
-      }}
+      style={{ gridTemplateColumns: columns, gap, padding: `${py}px 0` }}
     >
       {children}
     </div>
