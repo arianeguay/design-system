@@ -1,7 +1,8 @@
 import './PageHero.module.css';
 
 interface PageHeroProps {
-  eyebrow: string;
+  /** One label, or several rendered as separate spans. */
+  eyebrow: string | string[];
   title: React.ReactNode;
   lead?: React.ReactNode;
   ctas?: React.ReactNode;
@@ -25,8 +26,9 @@ export default function PageHero({
   titleProps,
   renderTexture,
 }: PageHeroProps) {
+  const labels = Array.isArray(eyebrow) ? eyebrow : [eyebrow];
   return (
-    <header style={{ position: 'relative', overflow: 'hidden' }}>
+    <header className="ds-page-hero">
       {renderTexture}
       <div
         className="container ds-page-hero-grid"
@@ -35,21 +37,15 @@ export default function PageHero({
           gridTemplateColumns: right ? columns : '1fr',
         }}
       >
-        <div style={{ paddingTop: 20, minWidth: 0 }}>
-          <div className="t-eyebrow">{eyebrow}</div>
+        <div className="ds-page-hero-text">
+          <p className="t-eyebrow">
+            {labels.map((label) => <span key={label}>{label}</span>)}
+          </p>
           <h1 className="t-h1" style={{ margin: 0 }} {...titleProps}>
             {title}
           </h1>
-          {lead && (
-            <div className="t-lead" style={{ marginTop: 32, maxWidth: 580 }}>
-              {lead}
-            </div>
-          )}
-          {ctas && (
-            <div className="flex-row flex-wrap" style={{ marginTop: 38, gap: 18 }}>
-              {ctas}
-            </div>
-          )}
+          {lead && <div className="t-lead ds-page-hero-lead">{lead}</div>}
+          {ctas && <div className="ds-page-hero-ctas">{ctas}</div>}
         </div>
 
         {right && <div style={{ position: 'relative' }}>{right}</div>}

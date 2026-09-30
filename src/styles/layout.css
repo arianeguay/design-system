@@ -31,7 +31,7 @@
 .bg-cream      { background: var(--color-cream); }
 .bg-paper      { background: var(--color-paper); }
 .bg-paper-warm { background: var(--color-paper-warm); }
-.bg-dark       { background: var(--color-dark); color: var(--color-dark-fg); }
+.bg-dark       { background: var(--color-dark); color: var(--color-dark-fg); --studio-colon: var(--band-accent); --studio-ink: var(--band-fg); }
 
 /* Flexbox courants */
 .flex-row   { display: flex; align-items: center; }

@@ -21,12 +21,17 @@
   padding: 0 var(--page-px);
 }
 
-.ds-warm-section-bg-paper      { background: var(--color-paper);      color: var(--color-ink); }
-.ds-warm-section-bg-paper-warm { background: var(--color-paper-warm); color: var(--color-ink); }
-.ds-warm-section-bg-cream      { background: var(--color-cream);      color: var(--color-ink); }
-.ds-warm-section-bg-dark       { background: var(--color-dark);       color: var(--color-dark-fg); }
+.ds-warm-section-bg-paper      { background: var(--surface);      color: var(--ink); }
+.ds-warm-section-bg-paper-warm { background: var(--surface-warm); color: var(--ink); }
+.ds-warm-section-bg-cream      { background: var(--ground);       color: var(--ink); }
+.ds-warm-section-bg-dark {
+  --studio-ink: var(--band-fg);
+  --studio-colon: var(--band-accent);
+  background: var(--band);
+  color: var(--band-fg);
+}
 
-/* Textures sur fonds clairs : traits noirs → inversés en blanc sur fond sombre */
+/* Light-ground textures have dark strokes: invert them on a dark ground. */
 @media (prefers-color-scheme: dark) {
   .ds-warm-section-bg-paper .ds-warm-section-texture,
   .ds-warm-section-bg-paper-warm .ds-warm-section-texture,

@@ -1,7 +1,31 @@
+.ds-page-hero {
+  position: relative;
+  overflow: hidden;
+}
+
 .ds-page-hero-grid {
+  position: relative;
   display: grid;
   gap: 64px;
   align-items: start;
+}
+
+.ds-page-hero-text {
+  padding-top: 20px;
+  min-width: 0;
+}
+
+.ds-page-hero-lead {
+  margin-top: 24px;
+  max-width: 580px;
+}
+
+.ds-page-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 38px;
 }
 
 @media (max-width: 760px) {

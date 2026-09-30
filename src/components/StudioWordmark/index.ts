@@ -1,1 +1,1 @@
-export { default, type StudioWordmarkProps } from './StudioWordmark';
+export { default, withStudio, withStudioHtml, type StudioWordmarkProps } from './StudioWordmark';

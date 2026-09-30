@@ -13,7 +13,13 @@ export { default as DividedList, DividedRow } from './components/DividedList';
 export { default as DashLines } from './components/DashLines';
 export { default as FadeIn } from './components/FadeIn';
 export { default as CodeBlock } from './components/CodeBlock';
-export { default as StudioWordmark, type StudioWordmarkProps } from './components/StudioWordmark';
+export {
+  default as StudioWordmark,
+  withStudio,
+  withStudioHtml,
+  type StudioWordmarkProps,
+} from './components/StudioWordmark';
+export { default as TextureGrid, type TextureGridVariant } from './components/TextureGrid';
 
 export {
   default as Drawer,

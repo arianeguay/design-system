@@ -1,5 +1,6 @@
 import React from 'react';
 import './Button.module.css';
+import { withStudio } from '../StudioWordmark';
 
 export type ButtonVariant = 'primary' | 'mustard' | 'terra' | 'outline' | 'ghost';
 
@@ -19,10 +20,9 @@ export interface ButtonProps {
 }
 
 function splitArrow(children: React.ReactNode): [React.ReactNode, boolean] {
-  if (typeof children === 'string' && children.endsWith(' →')) {
-    return [children.slice(0, -2), true];
-  }
-  return [children, false];
+  if (typeof children !== 'string') return [children, false];
+  const hasArrow = children.endsWith(' →');
+  return [withStudio(hasArrow ? children.slice(0, -2) : children), hasArrow];
 }
 
 const variantClassName: Record<ButtonVariant, string> = {
@@ -52,7 +52,7 @@ export default function Button({
 
   const inner = (
     <>
-      {text}
+      <span>{text}</span>
       {hasArrow && <span className="ds-btn-arrow" aria-hidden>→</span>}
     </>
   );

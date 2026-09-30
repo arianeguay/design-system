@@ -1,0 +1,34 @@
+.ds-code {
+  background: var(--band);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-code);
+}
+
+.ds-code-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--band-rule);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--band-fg-dim);
+}
+
+.ds-code-body {
+  margin: 0;
+  padding: 20px 22px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--band-fg);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.ds-code-key     { color: var(--band-accent); }
+.ds-code-val     { color: var(--band-fg); }
+.ds-code-mute    { color: var(--band-fg-dim); }
+.ds-code-comment { color: var(--band-fg-dim); font-style: italic; }

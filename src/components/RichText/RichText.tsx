@@ -1,4 +1,5 @@
 import React from 'react';
+import { withStudioHtml } from '../StudioWordmark';
 /* Wrapper pour du contenu HTML issu de nos propres fichiers de traduction.
    Remplace dangerouslySetInnerHTML + t.raw() partout dans le codebase.
    À utiliser uniquement avec du contenu contrôlé (JSON interne), jamais avec de l'input utilisateur. */
@@ -15,7 +16,7 @@ interface RichTextProps {
 export default function RichText({ children, as: Tag = 'div', className, style }: RichTextProps) {
   return (
     <Tag
-      dangerouslySetInnerHTML={{ __html: children }}
+      dangerouslySetInnerHTML={{ __html: withStudioHtml(children) }}
       className={className}
       style={style}
     />

@@ -1,6 +1,5 @@
-/* Utilitaires typographiques — tirés directement des tokens.
-   Utilisés via className dans les composants system/.
-   Pour les styles vraiment spécifiques à un contexte, utiliser un CSS module. */
+/* Typographic utilities of the AG Design System. Allowed sizes only:
+   --fs-display, --fs-h2, --fs-h3, 22, 19, 17, 15, 14.5 (button), 13, 11px. Nothing below 11px. */
 
 .t-wordmark {
   font-family: var(--font-wordmark);
@@ -11,7 +10,7 @@
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.0;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
 .t-h1 {
@@ -20,7 +19,7 @@
   line-height: 0.96;
   font-weight: 700;
   letter-spacing: -0.035em;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
 .t-h2 {
@@ -29,7 +28,7 @@
   line-height: 1.0;
   font-weight: 700;
   letter-spacing: -0.035em;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
 .t-h3 {
@@ -38,85 +37,96 @@
   line-height: 1.15;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
-/* Texte introductif sous un titre */
+.t-card-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
 .t-lead {
+  font-family: var(--font-body);
   font-size: 19px;
   line-height: 1.55;
-  color: var(--color-ink-soft);
+  color: var(--ink-soft);
 }
 
 .t-lead-sm {
+  font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.6;
-  color: var(--color-ink-soft);
+  color: var(--ink-soft);
 }
 
-/* Label mono en capslock — eyebrow, section tag, locale switcher */
-.t-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--color-terra);
-  margin-bottom: 16px;
-}
-
-/* Label mono muted — timestamps, metadata, nav lang toggle */
-.t-mono-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-ink-mute);
-}
-
-/* Corps de texte standard */
 .t-body {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.65;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
-/* Trois niveaux d'accent terracotta — règle stricte :
-   t-accent       → <span> dans un h1 hero  (couleur seulement, police heading normale)
-   t-accent-serif → <em> dans un h2 section  (Fraunces italique)
-   inline terra   → éléments UI uniquement  (icônes, points, bordures, YAML) */
+.t-small {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+}
 
-/* Accent couleur — mot mis en valeur dans un h1 hero */
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-text);
+  margin-bottom: 16px;
+}
+
+.t-mono-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+
+/* Several labels in one line: one <span> each, no glyph between them. */
+.t-eyebrow > span + span,
+.t-mono-label > span + span {
+  margin-left: 12px;
+}
+
+/* Three exclusive accent contexts:
+   .t-accent       one word in an h1 (color only)
+   .t-accent-serif one word in a section h2 (Fraunces italic)
+   inline accent   interface only (icons, colons, borders, YAML keys) */
 .t-accent {
-  color: var(--color-terra);
+  color: var(--accent);
 }
 
-/* Accent calligraphique — mot en Fraunces italique dans un h2 de section.
-   Contextes exclusifs : .t-wordmark = logo, .t-accent-serif = section h2. */
 .t-accent-serif {
   font-family: var(--font-wordmark);
   font-style: italic;
-  color: var(--color-terra);
+  color: var(--accent);
 }
 
 .t-accent-mustard {
-  color: var(--color-mustard);
+  color: var(--punct);
 }
 
-/* Citation — bloc blockquote ou pull-quote en heading italic */
+.t-accent-bourgogne {
+  color: var(--punct-2);
+}
+
 .t-quote {
   font-family: var(--font-heading);
   font-size: var(--fs-h3);
   font-style: italic;
   font-weight: 400;
   line-height: 1.35;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
-/* Wordmark Studio — studio: (Ubuntu Bold, deux-points terra)
-   Sur fond dark : --color-dark-fg. Sur fond clair : --color-ink.
-   Le colon terra est rendu via un <span> inline dans le composant <Wordmark />. */
 .t-wordmark-studio {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -124,35 +134,45 @@
   line-height: 1;
 }
 
-/* Lien subtil sur fond clair — texte mono discret, hover vers ink */
 .t-link-subtle {
+  color: var(--ink-soft);
   text-decoration: none;
-  transition: color 150ms ease;
+  transition: color var(--dur-fast) var(--ease-standard);
 }
 
 .t-link-subtle:hover {
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
-/* Lien ghost sur fond sombre — semi-transparent, hover vers blanc crème */
-.t-link-glass {
-  text-decoration: none;
-  transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
-}
-
-.t-link-glass:hover {
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.13);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Lien texte discret sur fond sombre — mono label, hover vers blanc crème */
+.t-link-glass,
 .t-link-dark-subtle {
+  color: var(--band-fg-dim);
   text-decoration: none;
-  transition: color 200ms ease, opacity 200ms ease;
+  transition: color var(--dur-fast) var(--ease-standard);
 }
 
+.t-link-glass:hover,
 .t-link-dark-subtle:hover {
-  color: rgba(255, 255, 255, 0.85);
-  opacity: 1 !important;
+  color: var(--band-fg);
+}
+
+/* The Studio wordmark: every mention of the product renders as studio:, always
+   in two colors whatever the parent sets. */
+.studio-mark {
+  color: var(--studio-ink, var(--ink));
+  font-family: var(--font-heading);
+  /* Ubuntu runs small next to Inter and JetBrains Mono. */
+  font-size: 1.15em;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.studio-mark-colon {
+  color: var(--studio-colon, var(--accent));
+}
+
+:is(h1, h2, h3, .t-h1, .t-h2, .t-h3, .t-card-title) .studio-mark {
+  font-size: 1em;
 }

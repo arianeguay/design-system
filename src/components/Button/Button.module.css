@@ -1,9 +1,10 @@
 .ds-btn {
+  --studio-ink: currentColor;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 15px 26px;
-  border-radius: 6px;
+  border-radius: var(--radius);
   font-size: 14.5px;
   font-weight: 600;
   text-decoration: none;
@@ -13,11 +14,10 @@
   white-space: nowrap;
   border: none;
   transition:
-    transform 200ms cubic-bezier(0.2, 0, 0, 1),
-    box-shadow 200ms cubic-bezier(0.2, 0, 0, 1),
-    background 150ms ease,
-    opacity 150ms ease;
-  will-change: transform;
+    transform var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard),
+    opacity var(--dur-fast) var(--ease-standard);
 }
 
 .ds-btn:hover {
@@ -26,7 +26,7 @@
 
 .ds-btn:active {
   transform: translateY(0);
-  transition-duration: 80ms;
+  transition-duration: var(--dur-press);
 }
 
 .ds-btn:disabled {
@@ -35,83 +35,92 @@
 }
 
 .ds-btn-primary {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--ink);
+  color: var(--surface);
 }
 
 .ds-btn-primary:hover {
-  box-shadow: 0 8px 24px -4px rgba(42, 32, 24, 0.35);
+  box-shadow: var(--shadow-primary-hover);
 }
 
 .ds-btn-mustard {
-  background: var(--color-mustard);
-  color: var(--color-ink);
-  box-shadow: 0 8px 20px -8px rgba(219, 166, 54, 0.5);
+  background: var(--punct);
+  color: var(--ink);
+  box-shadow: var(--shadow-punct-rest);
 }
 
 .ds-btn-mustard:hover {
-  box-shadow: 0 12px 28px -6px rgba(219, 166, 54, 0.65);
+  box-shadow: var(--shadow-punct-hover);
 }
 
 .ds-btn-terra {
-  background: var(--color-terra);
-  color: var(--color-paper);
+  --studio-colon: var(--ink);
+  background: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .ds-btn-terra:hover {
-  box-shadow: 0 8px 24px -4px rgba(201, 100, 66, 0.4);
+  box-shadow: var(--shadow-accent-hover);
 }
 
 .ds-btn-outline {
   background: transparent;
-  color: var(--color-ink);
-  border: 1px solid var(--color-ink-line);
+  color: var(--ink);
+  border: 1px solid var(--line);
 }
 
 .ds-btn-outline:hover {
-  border-color: var(--color-ink);
-  box-shadow: 0 4px 12px -2px rgba(42, 32, 24, 0.12);
+  border-color: var(--ink);
+  box-shadow: var(--shadow-outline-hover);
 }
 
 .ds-btn-outline-dark {
   background: transparent;
-  color: var(--color-dark-fg);
-  border: 1px solid rgba(234, 217, 212, 0.3);
+  color: var(--band-fg);
+  border: 1px solid var(--band-fg-dim);
 }
 
 .ds-btn-outline-dark:hover {
-  border-color: var(--color-dark-fg);
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+  border-color: var(--band-fg);
 }
 
 .ds-btn-ghost {
   background: transparent;
-  color: var(--color-ink-soft);
+  color: var(--ink-soft);
   border: none;
   text-decoration: underline;
   text-decoration-style: dotted;
-  text-decoration-color: var(--color-terra);
+  text-decoration-color: var(--accent);
   text-underline-offset: 4px;
   font-family: var(--font-mono);
   font-size: 13px;
   padding: 0;
+  gap: 4px;
 }
 
 .ds-btn-ghost:hover {
-  color: var(--color-terra);
+  color: var(--accent-text);
   text-decoration-style: solid;
   transform: none;
 }
 
 .ds-btn-arrow {
   display: inline-block;
-  transition: transform 220ms cubic-bezier(0.2, 0, 0, 1);
+  transition: transform var(--dur-arrow) var(--ease-standard);
 }
 
 .ds-btn:hover .ds-btn-arrow {
   transform: translateX(4px);
 }
 
-.ds-btn-ghost:hover .ds-btn-arrow {
-  transform: translateX(4px);
+@media (prefers-reduced-motion: reduce) {
+  .ds-btn,
+  .ds-btn-arrow {
+    transition: none;
+  }
+
+  .ds-btn:hover,
+  .ds-btn:hover .ds-btn-arrow {
+    transform: none;
+  }
 }
