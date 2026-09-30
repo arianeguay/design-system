@@ -14,6 +14,12 @@
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
+    "./studio": {
+      "source": "./src/studio.ts",
+      "import": "./dist/studio.js",
+      "require": "./dist/studio.cjs",
+      "types": "./dist/studio.d.ts"
+    },
     "./styles": {
       "source": "./src/styles/index.css",
       "default": "./dist/styles/index.css"

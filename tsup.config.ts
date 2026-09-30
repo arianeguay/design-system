@@ -1,17 +1,25 @@
 import { defineConfig } from 'tsup';
 
-export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['esm', 'cjs'],
+const shared = {
+  format: ['esm', 'cjs'] as ('esm' | 'cjs')[],
   dts: true,
   sourcemap: true,
-  clean: true,
   external: ['react', 'react-dom'],
-  // Preserve "use client" from src/index.ts in the bundle output
-  banner: {
-    js: '"use client";',
-  },
-  esbuildOptions(options) {
+  esbuildOptions(options: { jsx?: string }) {
     options.jsx = 'automatic';
   },
-});
+};
+
+export default defineConfig([
+  {
+    ...shared,
+    entry: ['src/index.ts'],
+    clean: true,
+    // Preserve "use client" from src/index.ts in the bundle output
+    banner: { js: '"use client";' },
+  },
+  {
+    ...shared,
+    entry: ['src/studio.ts'],
+  },
+]);
