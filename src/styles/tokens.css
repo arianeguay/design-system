@@ -1,134 +1,200 @@
-/* Design system tokens — mapped from A_PALETTE in the design handoff.
-   Ratio 70/20/10 : crème calme / terracotta / bourgogne+mustard (jamais ensemble). */
+/* AG Design System: core tokens and the AG skin.
+   Components read roles (--ground, --ink, --accent, --band...). The --color-* names
+   are legacy aliases of the roles, kept so existing modules keep working.
+   70 / 20 / 10: ground / accent / punct (mustard) or punct-2 (bourgogne), never both in a section. */
 
 :root {
-  /* 70% — neutres chauds calmes */
-  --color-cream: #f5efe4;
-  --color-cream-deep: #ede3d2;
-  --color-paper: #faf6ed;
-  --color-paper-warm: #f1e8d8;
+  /* Skin: AG light */
+  --ground: #f5efe4;
+  --ground-deep: #ede3d2;
+  --surface: #faf6ed;
+  --surface-warm: #f1e8d8;
+  --ink: #2a2018;
+  --ink-soft: #4a3d31;
+  --ink-mute: rgba(42, 32, 24, 0.68);
+  --ink-faint: rgba(42, 32, 24, 0.4);
+  --rule: rgba(42, 32, 24, 0.13);
+  --line: rgba(42, 32, 24, 0.22);
+  --accent: #c96442;
+  --accent-text: #9b4528;
+  --accent-soft: rgba(201, 100, 66, 0.12);
+  --accent-fill: #ad4f31;
+  --on-accent: #faf6ed;
+  --punct: #dba636;
+  --punct-2: #7a1f3d;
+  --band: #2a2018;
+  --band-elev: #3a2e23;
+  --band-fg: #ead9d4;
+  --band-fg-dim: rgba(234, 217, 212, 0.55);
+  --band-rule: rgba(234, 217, 212, 0.1);
+  --band-accent: #e08a66;
+  --band-punct-2: #d4a0b8;
+  --scrim: rgba(42, 32, 24, 0.5);
 
-  /* Texte — charbon chaud */
-  --color-ink: #2a2018;
-  --color-ink-soft: #4a3d31;
-  --color-ink-mute: rgba(42, 32, 24, 0.6);
-  --color-ink-faint: rgba(42, 32, 24, 0.4);
-  --color-ink-rule: rgba(42, 32, 24, 0.13);
-  --color-ink-line: rgba(42, 32, 24, 0.22);
+  /* Shadows, tinted by the skin */
+  --shadow-primary-hover: 0 8px 24px -4px rgba(42, 32, 24, 0.35);
+  --shadow-accent-hover: 0 8px 24px -4px rgba(201, 100, 66, 0.4);
+  --shadow-punct-rest: 0 8px 20px -8px rgba(219, 166, 54, 0.5);
+  --shadow-punct-hover: 0 12px 28px -6px rgba(219, 166, 54, 0.65);
+  --shadow-outline-hover: 0 4px 12px -2px rgba(42, 32, 24, 0.12);
+  --shadow-code: 0 2px 40px rgba(0, 0, 0, 0.3);
+  --shadow-nav: 0 4px 24px -4px rgba(42, 32, 24, 0.14);
+  --shadow-drawer: 0 -20px 60px -20px rgba(42, 32, 24, 0.25), 0 0 30px -10px rgba(42, 32, 24, 0.15);
 
-  /* 20% — accent primaire */
-  --color-terra: #c96442;
-  --color-terra-deep: #9b4528;
-  --color-terra-soft: rgba(201, 100, 66, 0.12);
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-press: 80ms;
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-arrow: 220ms;
+  --dur-panel: 240ms;
+  --dur-enter: 700ms;
 
-  /* 10% — ponctuations (jamais ensemble dans une même zone) */
-  --color-mustard: #dba636;
-  --color-bourgogne: #7a1f3d;
+  /* Focus */
+  --focus-width: 2px;
+  --focus-offset: 2px;
 
-  /* Surfaces sombres (footer, code blocks) */
-  --color-dark: #2a2018;
-  --color-dark-elev: #3a2e23;
-  --color-dark-fg: #ead9d4;
-  --color-dark-fg-dim: rgba(234, 217, 212, 0.55);
-  --color-dark-rule: rgba(234, 217, 212, 0.1);
+  /* Spacing */
+  --stack-sm: 12px;
+  --stack: 24px;
+  --stack-lg: 48px;
+  --section-py: 96px;
+  --section-sm: 72px;
+  --section: 110px;
+  --section-lg: 160px;
 
-  /* Typographie */
+  /* Type families */
   --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   --font-heading: var(--font-ubuntu), var(--font-inter), system-ui, sans-serif;
   --font-wordmark: var(--font-fraunces), "Instrument Serif", serif;
 
-  /* Échelle typographique fluide — mobile-first, calibrée pour 390px→1400px */
-  --fs-display: clamp(28px, 7.5vw, 104px);  /* hero h1 */
-  --fs-h2:      clamp(20px, 4.5vw, 64px);   /* section heading */
-  --fs-h3:      clamp(18px, 2.2vw, 28px);   /* sub-heading */
+  /* Fluid scale, 390px to 1400px */
+  --fs-display: clamp(28px, 7.5vw, 104px);
+  --fs-h2:      clamp(20px, 4.5vw, 64px);
+  --fs-h3:      clamp(18px, 2.2vw, 28px);
 
-  /* Espacements récurrents */
+  /* Layout */
   --page-max: 1280px;
   --page-px: 56px;
+  --radius-sm: 3px;
+  --radius: 6px;
+  --radius-lg: 8px;
 
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Backgrounds */
-    --color-cream:      #1c1510;
-    --color-cream-deep: #161210;
-    --color-paper:      #221b14;
-    --color-paper-warm: #1e1812;
-
-    /* Texte */
-    --color-ink:        #ead9d4;
-    --color-ink-soft:   #c8b5ae;
-    --color-ink-mute:   rgba(234, 217, 212, 0.6);
-    --color-ink-faint:  rgba(234, 217, 212, 0.4);
-    --color-ink-rule:   rgba(234, 217, 212, 0.12);
-    --color-ink-line:   rgba(234, 217, 212, 0.20);
-
-    /* Accents — légèrement plus lumineux sur fond sombre */
-    --color-terra:      #d4754f;
-    --color-terra-soft: rgba(212, 117, 79, 0.15);
-    --color-bourgogne:  #c2466a;
-
-    /* Surfaces sombres — plus sombres que le fond de page pour se distinguer */
-    --color-dark:      #0f0c08;
-    --color-dark-elev: #1c1510;
+    --ground: #1c1510;
+    --ground-deep: #161210;
+    --surface: #221b14;
+    --surface-warm: #1e1812;
+    --ink: #ead9d4;
+    --ink-soft: #c8b5ae;
+    --ink-mute: rgba(234, 217, 212, 0.6);
+    --ink-faint: rgba(234, 217, 212, 0.4);
+    --rule: rgba(234, 217, 212, 0.12);
+    --line: rgba(234, 217, 212, 0.20);
+    --accent: #d4754f;
+    --accent-text: #d4754f;
+    --accent-soft: rgba(212, 117, 79, 0.15);
+    --accent-fill: #d4754f;
+    --on-accent: #221b14;
+    --punct-2: #c2466a;
+    --band: #0f0c08;
+    --band-elev: #1c1510;
+    --scrim: rgba(15, 12, 8, 0.7);
   }
 }
 
-/* Force light tokens regardless of OS preference — used by light-only apps.
-   Apply data-theme="light" on the page wrapper to activate. */
+/* Force a mode on any element (an island): data-theme="light" or "dark". */
 [data-theme="light"] {
-  --color-cream: #f5efe4;
-  --color-cream-deep: #ede3d2;
-  --color-paper: #faf6ed;
-  --color-paper-warm: #f1e8d8;
-
-  --color-ink: #2a2018;
-  --color-ink-soft: #4a3d31;
-  --color-ink-mute: rgba(42, 32, 24, 0.6);
-  --color-ink-faint: rgba(42, 32, 24, 0.4);
-  --color-ink-rule: rgba(42, 32, 24, 0.13);
-  --color-ink-line: rgba(42, 32, 24, 0.22);
-
-  --color-terra: #c96442;
-  --color-terra-deep: #9b4528;
-  --color-terra-soft: rgba(201, 100, 66, 0.12);
-
-  --color-mustard: #dba636;
-  --color-bourgogne: #7a1f3d;
-
-  --color-dark: #2a2018;
-  --color-dark-elev: #3a2e23;
-  --color-dark-fg: #ead9d4;
-  --color-dark-fg-dim: rgba(234, 217, 212, 0.55);
-  --color-dark-rule: rgba(234, 217, 212, 0.1);
+  --ground: #f5efe4;
+  --ground-deep: #ede3d2;
+  --surface: #faf6ed;
+  --surface-warm: #f1e8d8;
+  --ink: #2a2018;
+  --ink-soft: #4a3d31;
+  --ink-mute: rgba(42, 32, 24, 0.68);
+  --ink-faint: rgba(42, 32, 24, 0.4);
+  --rule: rgba(42, 32, 24, 0.13);
+  --line: rgba(42, 32, 24, 0.22);
+  --accent: #c96442;
+  --accent-text: #9b4528;
+  --accent-soft: rgba(201, 100, 66, 0.12);
+  --accent-fill: #ad4f31;
+  --on-accent: #faf6ed;
+  --punct: #dba636;
+  --punct-2: #7a1f3d;
+  --band: #2a2018;
+  --band-elev: #3a2e23;
+  --band-fg: #ead9d4;
+  --band-fg-dim: rgba(234, 217, 212, 0.55);
+  --band-rule: rgba(234, 217, 212, 0.1);
+  --band-accent: #e08a66;
+  --band-punct-2: #d4a0b8;
+  --scrim: rgba(42, 32, 24, 0.5);
 
   color-scheme: light;
 }
 
-/* Force dark tokens regardless of OS preference — used by dark-only apps (e.g. studio-foundation-web).
-   Apply data-theme="dark" on the page wrapper to activate. */
 [data-theme="dark"] {
-  --color-cream:      #1c1510;
-  --color-cream-deep: #161210;
-  --color-paper:      #221b14;
-  --color-paper-warm: #1e1812;
-
-  --color-ink:        #ead9d4;
-  --color-ink-soft:   #c8b5ae;
-  --color-ink-mute:   rgba(234, 217, 212, 0.6);
-  --color-ink-faint:  rgba(234, 217, 212, 0.4);
-  --color-ink-rule:   rgba(234, 217, 212, 0.12);
-  --color-ink-line:   rgba(234, 217, 212, 0.20);
-
-  --color-terra:      #d4754f;
-  --color-terra-soft: rgba(212, 117, 79, 0.15);
-  --color-bourgogne:  #c2466a;
-
-  --color-dark:      #0f0c08;
-  --color-dark-elev: #1c1510;
+  --ground: #1c1510;
+  --ground-deep: #161210;
+  --surface: #221b14;
+  --surface-warm: #1e1812;
+  --ink: #ead9d4;
+  --ink-soft: #c8b5ae;
+  --ink-mute: rgba(234, 217, 212, 0.6);
+  --ink-faint: rgba(234, 217, 212, 0.4);
+  --rule: rgba(234, 217, 212, 0.12);
+  --line: rgba(234, 217, 212, 0.20);
+  --accent: #d4754f;
+  --accent-text: #d4754f;
+  --accent-soft: rgba(212, 117, 79, 0.15);
+  --accent-fill: #d4754f;
+  --on-accent: #221b14;
+  --punct: #dba636;
+  --punct-2: #c2466a;
+  --band: #0f0c08;
+  --band-elev: #1c1510;
+  --band-fg: #ead9d4;
+  --band-fg-dim: rgba(234, 217, 212, 0.55);
+  --band-rule: rgba(234, 217, 212, 0.1);
+  --band-accent: #e08a66;
+  --band-punct-2: #d4a0b8;
+  --scrim: rgba(15, 12, 8, 0.7);
 
   color-scheme: dark;
+}
+
+@media (max-width: 1024px) { :root { --page-px: 32px; } }
+@media (max-width: 760px)  { :root { --page-px: 22px; } }
+@media (max-width: 480px)  { :root { --page-px: 16px; } }
+
+/* Legacy aliases. Declared on [data-theme] too so an island re-resolves them. */
+:root, [data-theme] {
+  --color-cream: var(--ground);
+  --color-cream-deep: var(--ground-deep);
+  --color-paper: var(--surface);
+  --color-paper-warm: var(--surface-warm);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+  --color-ink-faint: var(--ink-faint);
+  --color-ink-rule: var(--rule);
+  --color-ink-line: var(--line);
+  --color-terra: var(--accent);
+  --color-terra-deep: var(--accent-text);
+  --color-terra-soft: var(--accent-soft);
+  --color-mustard: var(--punct);
+  --color-bourgogne: var(--punct-2);
+  --color-dark: var(--band);
+  --color-dark-elev: var(--band-elev);
+  --color-dark-fg: var(--band-fg);
+  --color-dark-fg-dim: var(--band-fg-dim);
+  --color-dark-rule: var(--band-rule);
+  --focus-ring: var(--accent);
 }
